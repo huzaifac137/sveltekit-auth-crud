@@ -9,12 +9,12 @@
 <div>
   <input
     type="text"
-    placeholder=" enter the name"
+    placeholder=" enter the error"
     value={name}
     on:input={handleClick}
   />
   <h2>Welcome to my first svelte</h2>
-  <a href="/about?name={name}">About page</a>
+  <a href="/about?error={name}">Lets do crud </a>
 </div>
 
 <style>
