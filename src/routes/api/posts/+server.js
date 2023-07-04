@@ -1,11 +1,20 @@
 import { json } from "@sveltejs/kit";
-import { getAllData } from "../../../Components/dummy-data";
+import { prisma } from "../../../libs/server/prisma.js";
+ 
 export async function GET({ url }) {
   const error = url.searchParams.get("error");
 
   if (error?.length > 0) {
     return new json({ message: "error fetching data" }, { status: 500 });
   } else {
-    return new json(getAllData(), { status: 200 });
+
+    let allData;
+    try {
+          allData = await prisma.arrData.findMany({});
+    } catch (error) {
+      return new json({ message: error }, { status: 500 });
+    }
+   
+    return new json(allData, { status: 200 });
   }
 }

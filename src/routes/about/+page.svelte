@@ -52,14 +52,14 @@
 <div data-sveltekit-preload-data="hover" class="container">
   {#if data?.data?.length>0}
     <div class="inner">
-      {#each data.data as item (item.color)}
+      {#each data.data as item (item.id)}
         <div class="item">
           <h3 style="color: gray;  ">
             {item.color}
           </h3>
           <h4>{item.value}</h4>
  
-          <button on:click={()=>handleDelete(item.value)}>Delete</button>
+          <button on:click={()=>handleDelete(item.id)}>Delete</button>
         </div>
         {
           #if modalIsOpen===true }
