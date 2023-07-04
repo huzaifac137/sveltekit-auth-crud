@@ -12,7 +12,7 @@ export async function GET({ url }) {
     try {
           allData = await prisma.arrData.findMany({});
     } catch (error) {
-      return new json({ message: error }, { status: 500 });
+      return new json({ message: error.message }, { status: 500 });
     }
    
     return new json(allData, { status: 200 });
