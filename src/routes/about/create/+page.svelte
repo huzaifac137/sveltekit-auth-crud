@@ -3,13 +3,7 @@
   let responseMsg = "";
   let name = "",
     value = "";
-  const handleName = (e) => {
-    name = e.target.value;
-  };
-
-  const handleValue = (e) => {
-    value = e.target.value;
-  };
+  
 
   const handleSubmit = async () => {
     let responseData;
@@ -44,8 +38,8 @@
 </script>
 
 <div class="post">
-  <input type="text" placeholder="color name" on:input={handleName} value={name} />
-  <input type="text" placeholder="color value" on:input={handleValue} value={value} />
+  <input type="text" placeholder="color name"   bind:value={name} />
+  <input type="text" placeholder="color value"   bind:value={value} />
   <button on:click={handleSubmit}>Submit</button>
 
   {#if responseMsg !== ""}

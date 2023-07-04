@@ -1,17 +1,15 @@
 <script>
   let name = "";
 
-  const handleClick = (e) => {
-    name = e.target.value;
-  };
+ 
 </script>
 
 <div>
   <input
     type="text"
     placeholder=" enter the error"
-    value={name}
-    on:input={handleClick}
+    bind:value={name}
+    
   />
   <h2>Welcome to my first svelte</h2>
   <a href="/about?error={name}">Lets do crud </a>

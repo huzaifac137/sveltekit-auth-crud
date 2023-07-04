@@ -14,6 +14,9 @@
    responseMsg="";
   };
 
+  const onCancel=()=>{
+    modalIsOpen=false;
+  }
   const confirmDelete=async()=>{
     let responseData;
     try {
@@ -60,7 +63,7 @@
         </div>
         {
           #if modalIsOpen===true }
-             <Modal onConfirm={confirmDelete} responseMsg={responseMsg} onCancel={()=>modalIsOpen=false}  />
+             <Modal onConfirm={confirmDelete} responseMsg={responseMsg} onCancel={onCancel}  />
           {/if}
       {/each}
     </div>
