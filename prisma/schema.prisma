@@ -6,13 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      =  env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model ArrData {
-  id        Int      @id @default(autoincrement())
-  color     String
-  value   String
- 
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   color String
+   value String
 }

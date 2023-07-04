@@ -10,7 +10,7 @@ export async function DELETE({url})
    try {
        await  prisma.arrData.delete({
            where : {
-               id : Number(value)
+               id : value
            } 
          });
    } catch (error) {
