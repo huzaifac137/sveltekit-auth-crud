@@ -1,54 +1,60 @@
 <script>
   let loading = false;
-  let responseMsg = "";
+   // let responseMsg;
   let name = "",
     value = "";
+
+  export let form;
   
 
-  const handleSubmit = async () => {
-    let responseData;
-    try {
-      responseMsg = "";
-      loading = true;
-      const response = await fetch("/api/posts/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+  // const handleSubmit = async () => {
+  //   let responseData;
+  //   try {
+  //     responseMsg = "";
+  //     loading = true;
+  //     const response = await fetch("/api/posts/create", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
 
-        body: JSON.stringify({
-          colorName: name,
-          colorValue: value,
-        }),
-      });
+  //       body: JSON.stringify({
+  //         colorName: name,
+  //         colorValue: value,
+  //       }),
+  //     });
 
-      responseData = await response.json();
+  //     responseData = await response.json();
 
-      if (response.status !== 201) {
-        throw new Error(responseData.message);
-      }
+  //     if (response.status !== 201) {
+  //       throw new Error(responseData.message);
+  //     }
 
-      responseMsg = responseData.message;
-      loading = false;
-    } catch (error) {
-      responseMsg = error.message;
-      loading = false;
-    }
-  };
+  //     responseMsg = responseData.message;
+  //     loading = false;
+  //   } catch (error) {
+  //     responseMsg = error.message;
+  //     loading = false;
+  //   }
+  // };
 </script>
 
-<div class="post">
-  <input type="text" placeholder="color name"   bind:value={name} />
-  <input type="text" placeholder="color value"   bind:value={value} />
-  <button on:click={handleSubmit}>Submit</button>
+<form class="post" method="POST">
+  <input type="text" name="color" placeholder="color name"   bind:value={name} />
+  <input type="text" name="value" placeholder="color value"   bind:value={value} />
+  <button> Submit </button>
 
-  {#if responseMsg !== ""}
-    <h3>{responseMsg}</h3>
-  {/if}
+  <!-- <button on:click={handleSubmit}>Submit</button> -->
+</form>
 
-  {#if loading === true}
-    <h3>Loading...</h3>
-  {/if}
+<div style=" text-align: center;"> 
+  {#if form?.responseMsg !== "" && form?.responseMsg!==undefined}
+  <h3>{form?.responseMsg}</h3>
+{/if}
+
+<!-- {#if loading === true}
+  <h3>Loading...</h3>
+{/if} -->
 </div>
 
 <style>
@@ -59,4 +65,6 @@
     align-items: center;
     gap: 20px;
   }
+
+
 </style>
