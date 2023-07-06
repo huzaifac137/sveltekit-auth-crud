@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { dataStore, getStore } from '../../Store/userStore.js';
 import jwt from "jsonwebtoken";
-import {JWT_KEY} from "$env/dynamic/private";
+//import {JWT_KEY} from "$env/dynamic/private";
 
 
 
@@ -16,7 +16,7 @@ export const load = async ({ fetch, url , cookies }) => {
   let extractedValues;
   if(sessionId!="undefined" && sessionId)
   {
-     extractedValues = jwt.verify(sessionId , JWT_KEY);
+     extractedValues = jwt.verify(sessionId , process.env.JWT_KEY);
   } 
    
 

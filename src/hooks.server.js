@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { dataStore, getStore } from './Store/userStore';
 import jwt from "jsonwebtoken";
-import {JWT_KEY} from "$env/dynamic/private";
+// import {JWT_KEY} from "$env/dynamic/private";
 
 export async function handle({ event, resolve }) {
     
@@ -18,7 +18,7 @@ export async function handle({ event, resolve }) {
     
     if(sessionId!="undefined" && sessionId)
     {
-          const extractedValues = jwt.verify(sessionId , JWT_KEY);
+          const extractedValues = jwt.verify(sessionId , process.env.JWT_KEY);
            
         dataStore.set(extractedValues);
            

@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { dataStore, getStore } from '../../Store/userStore.js';
 import jwt from "jsonwebtoken";
-import {JWT_KEY} from "$env/dynamic/private";
+// import {JWT_KEY} from "$env/dynamic/private";
 import { goto } from '$app/navigation';
 
 export const load=async({cookies})=>{
@@ -51,7 +51,7 @@ export const actions = {
        if(response.status===201 && user)
        {
 
-        const sessionData = jwt.sign({id : user.id , email : user.email , username : user.username} ,JWT_KEY  ) ;
+        const sessionData = jwt.sign({id : user.id , email : user.email , username : user.username} ,process.env.JWT_KEY  ) ;
          
         cookies.set('session_id', sessionData, {
           path: '/',
