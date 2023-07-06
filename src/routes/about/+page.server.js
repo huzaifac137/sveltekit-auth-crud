@@ -19,9 +19,6 @@ export const load = async ({ fetch, url , cookies }) => {
      extractedValues = jwt.verify(sessionId , process.env.JWT_KEY);
   } 
    
-
-
-  const data = getStore(dataStore);
   if(data===null){
     throw redirect(302 , "/login");
   }
@@ -47,7 +44,7 @@ export const load = async ({ fetch, url , cookies }) => {
 
   return {
     data: responseData,
-    store : extractedValues
+    store : extractedValues.id
   };
 };
 

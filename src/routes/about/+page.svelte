@@ -66,7 +66,7 @@
             {item.color}
           </h3>
           <h4>{item.value}</h4>
-          {#if data?.store?.id===item.creatorId}
+          {#if data?.store===item.creatorId}
           <button on:click={()=>handleDelete(item.id , item.creatorId)}>Delete</button>
           {/if}
         
