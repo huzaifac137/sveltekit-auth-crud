@@ -5,13 +5,13 @@ import jwt from "jsonwebtoken";
 import { goto } from '$app/navigation';
 
 export const load=async({cookies})=>{
-                  
-  const data = getStore(dataStore);
 
-   
-  if(data?.username && data?.email && data?.id){
-    throw redirect(302 , "/");
-  }
+                  
+  const sessionId = cookies.get("session_id");
+   if(sessionId && sessionId!="undefined")
+   {
+      throw redirect(302 , "/");
+   }
 
  
   
