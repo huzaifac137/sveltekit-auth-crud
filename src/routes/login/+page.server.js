@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { dataStore, getStore } from '../../Store/userStore.js';
 import jwt from "jsonwebtoken";
-import {JWT_KEY} from "$env/static/private";
+import {JWT_KEY} from "$env/dynamic/private";
 import { goto } from '$app/navigation';
 
 export const load=async({cookies})=>{
