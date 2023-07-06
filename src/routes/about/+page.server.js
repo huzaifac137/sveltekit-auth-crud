@@ -47,7 +47,7 @@ export const load = async ({ fetch, url , cookies }) => {
 
   return {
     data: responseData,
-    store : data
+    store : extractedValues
   };
 };
 
