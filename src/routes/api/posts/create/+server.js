@@ -3,7 +3,8 @@ import { addNewData } from "../../../../Components/dummy-data.js";
 import { prisma } from "../../../../libs/server/prisma.js";
 
 export async function POST({ url, request }) {
-  const { colorName, colorValue } = await request.json();
+
+  const { colorName, colorValue , creatorId } = await request.json();
   if(colorName.trim().length===0 || colorValue.trim().length===0)
   {
     return new json({ message: "cannot leave feilds empty" }, { status: 400 });
@@ -13,7 +14,8 @@ export async function POST({ url, request }) {
     const newData = await prisma.arrData.create({
       data : {
         color : colorName ,
-        value : colorValue
+        value : colorValue ,
+        creatorId : creatorId
       }
      });
   } catch (error) {

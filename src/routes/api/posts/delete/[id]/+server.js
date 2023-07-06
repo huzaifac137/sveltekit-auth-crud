@@ -1,17 +1,37 @@
 import { json } from '@sveltejs/kit';
 import { getDataByValueAndDelete } from '../../../../../Components/dummy-data.js';
 import { prisma } from '../../../../../libs/server/prisma.js';
+import { dataStore, getStore } from '../../../../../Store/userStore.js';
 
 export async function DELETE({url})
 {
-   const value = url.pathname.split("/delete/")[1];
+   const data = url.pathname.split("/delete/")[1];
+   const postId = data.split("kanapumabollin")[0];
+   const creatorId = data.split("kanapumabollin")[1];
+
+   console.log("STORE" , getStore(dataStore))
+   if(getStore(dataStore)==null)
+   {
+      return new json({message :"Unauthorized action!"}, {status:401})
+   }
    
    
    try {
-       await  prisma.arrData.delete({
-           where : {
-               id : value
-           } 
+  const userExists =  await prisma.user.findFirst({ where : {
+        id : creatorId
+    }});
+
+    if(!userExists)
+    { 
+        return new json({ message: "youre not authorized to do this action" }, { status: 401 });
+    }
+
+       await  prisma.arrData.delete({ 
+        where : {
+            id : postId
+        } , include :{
+            creator : true
+        }
          });
    } catch (error) {
       return new json({ message: error.message }, { status: 400 });

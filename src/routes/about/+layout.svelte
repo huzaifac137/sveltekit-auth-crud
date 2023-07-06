@@ -1,7 +1,10 @@
 <nav>
   <a href="/about"> Get data</a>
   <a href="/about/create"> Post data</a>
+   
 </nav>
+
+
 
 <style>
   nav{

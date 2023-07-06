@@ -5,13 +5,17 @@
   let responseMsg="";
   let modalIsOpen=false;
   let valueToDelete;
+  let creatorIdToDeletePost;
 
   const errorParam = $page.url.searchParams.get("error");
 
-  const handleDelete=(value)=>{
+  const handleDelete=(value , creator)=>{
+
    modalIsOpen=true;
    valueToDelete=value;
+   creatorIdToDeletePost=creator;
    responseMsg="";
+   console.log(modalIsOpen);
   };
 
   const onCancel=()=>{
@@ -21,7 +25,7 @@
     let responseData;
     try {
         
-         const response = await fetch(`/api/posts/delete/${valueToDelete}` , {
+         const response = await fetch(`/api/posts/delete/${valueToDelete+"kanapumabollin"+creatorIdToDeletePost}` , {
           method:"DELETE" ,
           headers: {
             "Content-Type" :"application/json"
@@ -45,9 +49,13 @@
   }
 
   export let data;
+
 </script>
 
- 
+<form method="POST">
+<button> Logout </button>
+</form>
+
 <h2>Loaded data from Get Request {errorParam}</h2>
 <div data-sveltekit-preload-data="hover" class="container">
   {#if data?.data?.length>0}
@@ -58,8 +66,10 @@
             {item.color}
           </h3>
           <h4>{item.value}</h4>
- 
-          <button on:click={()=>handleDelete(item.id)}>Delete</button>
+          {#if data.store.id===item.creatorId}
+          <button on:click={()=>handleDelete(item.id , item.creatorId)}>Delete</button>
+          {/if}
+        
         </div>
         {
           #if modalIsOpen===true }
