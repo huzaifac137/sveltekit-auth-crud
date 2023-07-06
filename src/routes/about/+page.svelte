@@ -60,7 +60,7 @@
 <div data-sveltekit-preload-data="hover" class="container">
   {#if data?.data?.length>0}
     <div class="inner">
-      {#each data.data as item (item.id)}
+      {#each data?.data as item (item.id)}
         <div class="item">
           <h3 style="color: gray;  ">
             {item.color}
