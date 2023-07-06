@@ -7,7 +7,7 @@ import { goto } from '$app/navigation';
 export const load=async({cookies})=>{
 
                   
-  const sessionId = cookies.get("session_id");
+  let sessionId = cookies.get("session_id");
    if(sessionId && sessionId!="undefined")
    {
       throw redirect(302 , "/");
