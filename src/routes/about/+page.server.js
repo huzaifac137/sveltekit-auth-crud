@@ -35,6 +35,13 @@ export const load = async ({ fetch, url , cookies }) => {
     if (response.status !== 200) {
       throw new Error(responseData.message);
     }
+
+    
+  return {
+    data: responseData,
+    store : extractedValues
+  };
+
   } catch (error) {
     return {
       message: error.message,
@@ -42,10 +49,6 @@ export const load = async ({ fetch, url , cookies }) => {
   }
 
 
-  return {
-    data: responseData,
-    store : extractedValues.id
-  };
 };
 
 export const actions = {
