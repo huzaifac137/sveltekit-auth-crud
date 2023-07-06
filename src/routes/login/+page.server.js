@@ -4,14 +4,15 @@ import jwt from "jsonwebtoken";
 
 import { goto } from '$app/navigation';
 
-export const load=async({cookies})=>{
-
+export const load=async(event)=>{
                   
-  let sessionId = cookies.get("session_id");
-   if(sessionId && sessionId!="undefined")
-   {
-      throw redirect(302 , "/");
-   }
+
+   
+if(event.locals.sessionData)
+{
+
+     throw redirect(302 , "/");
+}
 
  
   

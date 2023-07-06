@@ -1,14 +1,15 @@
 import { redirect } from '@sveltejs/kit';
 import { dataStore, getStore } from '../../Store/userStore.js';
 import jwt from "jsonwebtoken";
-//import {JWT_KEY} from "$env/dynamic/private";
+
 
 export const prerender = false;
 
 
-export const load = async ({ fetch, url , cookies }) => {
+export const load = async ({ locals, fetch, url , cookies }) => {
 
-  const sessionId = cookies.get("session_id");
+  const sessionId =locals.sessionData;
+
    if(!sessionId || sessionId=="undefined")
    {
       throw redirect(302 , "/login");
@@ -17,15 +18,9 @@ export const load = async ({ fetch, url , cookies }) => {
   let extractedValues;
   if(sessionId!="undefined" && sessionId)
   {
-     extractedValues = jwt.verify(sessionId , process.env.JWT_KEY);
+     extractedValues = sessionId;
   } 
    
-
-
-  const data = getStore(dataStore);
-  if(data===null){
-    throw redirect(302 , "/login");
-  }
   
   let responseData;
   try {
@@ -60,11 +55,7 @@ export const actions = {
 
   default : async({cookies , event})=>{
 
-    cookies.set("session_id");
-       
-       dataStore.set(null);
-       
-      
+        cookies.set("session_id");
         throw redirect(302 ,"/login");
     
 

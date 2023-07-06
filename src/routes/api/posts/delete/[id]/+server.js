@@ -1,7 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { getDataByValueAndDelete } from '../../../../../Components/dummy-data.js';
 import { prisma } from '../../../../../libs/server/prisma.js';
-import { dataStore, getStore } from '../../../../../Store/userStore.js';
 
 export async function DELETE({url})
 {
@@ -9,11 +8,6 @@ export async function DELETE({url})
    const postId = data.split("kanapumabollin")[0];
    const creatorId = data.split("kanapumabollin")[1];
 
-   console.log("STORE" , getStore(dataStore))
-   if(getStore(dataStore)==null)
-   {
-      return new json({message :"Unauthorized action!"}, {status:401})
-   }
    
    
    try {

@@ -3,28 +3,31 @@ import { dataStore, getStore } from '../../../Store/userStore.js';
 
 export const prerender = false;
 
-export const load=()=>{
-  const data = getStore(dataStore);
+export const load=({locals})=>{
 
-   
-  if(data==null){
-    throw redirect(302 , "/");
+  const session = locals.sessionData;
+  if(!session)
+  {
+    throw redirect(302 , "/login");
   }
+ 
 }
 
 export const actions = {
 
-    default: async ({  request , fetch }) => {
+    default: async ({  request , fetch , locals }) => {
         const data = await request.formData();
         const color= data.get('color');
         const value= data.get('value');
 
-        if(getStore(dataStore)==null)
+        const session = locals.sessionData;
+        if(!session)
         {
-              throw redirect(302 , "/");
+          throw redirect(302 , "/login");
         }
 
-        const creatorId = getStore(dataStore).id;
+        const creatorId = session.id;
+  
 
         let responseData , responseMsg;
     try {

@@ -9,7 +9,7 @@ export async function handle({ event, resolve }) {
     
     if(!sessionId || sessionId=="undefined")
     { 
-        dataStore.set(null);
+       
         console.log("IF SESSIONID DOESNT EXIST");
         const response = await resolve(event);
         return response;
@@ -20,9 +20,9 @@ export async function handle({ event, resolve }) {
     {
           const extractedValues = jwt.verify(sessionId , process.env.JWT_KEY);
            
-        dataStore.set(extractedValues);
+           event.locals.sessionData = extractedValues;
            
-        console.log("HOOK COOKIES : " , extractedValues);
+       
     }
 
     const response = await resolve(event);

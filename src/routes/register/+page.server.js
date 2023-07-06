@@ -1,13 +1,14 @@
 import { redirect } from '@sveltejs/kit';
 import { dataStore, getStore } from '../../Store/userStore.js';
 
-export const load=({})=>{
-    const data = getStore(dataStore);
+export const load=(event)=>{
+
    
-    
-    if(data?.username && data?.email && data?.id){
-        throw redirect(302 , "/");
-      }
+  if(event.locals.sessionData)
+  {
+   
+       throw redirect(302 , "/");
+  }
     
 }
 export const actions = {

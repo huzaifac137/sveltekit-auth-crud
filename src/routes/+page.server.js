@@ -3,10 +3,10 @@ import { dataStore, getStore } from "../Store/userStore";
 
 
 
-export const load=()=>{
-    const data = getStore(dataStore);
-    console.log(data);
-    if(data===null){
-        throw redirect(302 , "/login");
-      }
+export const load=(event)=>{
+ 
+   if(!event.locals.sessionData)
+   {
+     throw redirect(302 , "/login");
+   }
 }
