@@ -12,7 +12,7 @@
     
   />
   <h2>Welcome to my first svelte</h2>
-  <a href="/about?error={name}">Lets do crud </a>
+  <a data-sveltekit-reload href="/about?error={name}">Lets do crud </a>
 </div>
 
 <style>

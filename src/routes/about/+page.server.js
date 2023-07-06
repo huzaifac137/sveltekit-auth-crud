@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 //import {JWT_KEY} from "$env/dynamic/private";
 
 
+export const prerender = false;
 
 export const load = async ({ fetch, url , cookies }) => {
 

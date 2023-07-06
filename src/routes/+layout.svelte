@@ -9,7 +9,7 @@
     href="/"
     on:click={() => (route = " ")}>Home</a
   >
-  <a
+  <a data-sveltekit-reload
     class={route === "about" ? "active" : "simple"}
     href="/about"
     on:click={() => (route = "about")}>About</a

@@ -1,6 +1,7 @@
 import { json } from "@sveltejs/kit";
 import { addNewData } from "../../../../Components/dummy-data.js";
 import { prisma } from "../../../../libs/server/prisma.js";
+export const prerender = false;
 
 export async function POST({ url, request }) {
 
