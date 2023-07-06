@@ -50,6 +50,7 @@
 
   export let data;
 
+
 </script>
 
 <form method="POST">
@@ -57,7 +58,7 @@
 </form>
 
 <h2>Loaded data from Get Request {errorParam}</h2>
-<div   class="container">
+<div data-sveltekit-reload  class="container">
   {#if data?.data?.length>0}
     <div class="inner">
       {#each data.data as item (item.id)}
@@ -66,7 +67,8 @@
             {item.color}
           </h3>
           <h4>{item.value}</h4>
-          {#if data?.store?.id===item.creatorId}
+          {#if data?.store===item.creatorId}
+          
           <button on:click={()=>handleDelete(item.id , item.creatorId)}>Delete</button>
           {/if}
         

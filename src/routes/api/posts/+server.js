@@ -1,7 +1,8 @@
 import { json } from "@sveltejs/kit";
 import { prisma } from "../../../libs/server/prisma.js";
 import { dataStore, getStore } from "../../../Store/userStore.js";
- 
+export const prerender = false;
+
 export async function GET({ url }) {
   const data = getStore(dataStore);
   

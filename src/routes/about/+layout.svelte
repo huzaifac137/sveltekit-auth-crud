@@ -1,6 +1,6 @@
 <nav>
-  <a href="/about"> Get data</a>
-  <a  data-sveltekit-reload href="/about/create"> Post data</a>
+  <a data-sveltekit-reload href="/about"> Get data</a>
+  <a href="/about/create"> Post data</a>
    
 </nav>
 

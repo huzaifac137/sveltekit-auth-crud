@@ -3,8 +3,8 @@ import { dataStore, getStore } from '../../Store/userStore.js';
 import jwt from "jsonwebtoken";
 //import {JWT_KEY} from "$env/dynamic/private";
 
-
 export const prerender = false;
+
 
 export const load = async ({ fetch, url , cookies }) => {
 
@@ -20,6 +20,9 @@ export const load = async ({ fetch, url , cookies }) => {
      extractedValues = jwt.verify(sessionId , process.env.JWT_KEY);
   } 
    
+
+
+  const data = getStore(dataStore);
   if(data===null){
     throw redirect(302 , "/login");
   }
@@ -37,17 +40,17 @@ export const load = async ({ fetch, url , cookies }) => {
       throw new Error(responseData.message);
     }
 
-    
-  return {
-    data: responseData,
-    store : extractedValues
-  };
+    return {
+      data: responseData,
+      store : extractedValues.id
+    };
 
   } catch (error) {
     return {
       message: error.message,
     };
   }
+
 
 
 };

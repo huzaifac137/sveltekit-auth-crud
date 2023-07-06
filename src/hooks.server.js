@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { dataStore, getStore } from './Store/userStore';
 import jwt from "jsonwebtoken";
-// import {JWT_KEY} from "$env/dynamic/private";
+
 
 export async function handle({ event, resolve }) {
     
